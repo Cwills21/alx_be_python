@@ -1,3 +1,4 @@
+# Finance calculator
 monthlyIcome = int(input("Enter your monthly income:"))
 monthlyExpenses = int(input("Enter your total monthly expenses:"))
 monthlySavings = monthlyIcome - monthlyExpenses
