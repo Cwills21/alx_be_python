@@ -1,28 +1,38 @@
-Task = input("Enter your task: ")
-Priority = input("Priority (high, medium, low): ")
-Time_bound = input("Is it time-bound? (yes or no): ")
+# daily_reminder.py
 
-match Priority:
+# Prompt user for task input
+task = input("Enter your task: ").strip()
+
+# Validate priority input using a loop
+while True:
+    priority = input("Priority (high/medium/low): ").strip().lower()
+    if priority in ("high", "medium", "low"):
+        break
+    else:
+        print("Please enter a valid priority: high, medium, or low.")
+
+# Validate time-bound input using a loop
+while True:
+    time_bound = input("Is it time-bound? (yes/no): ").strip().lower()
+    if time_bound in ("yes", "no"):
+        break
+    else:
+        print("Please enter 'yes' or 'no'.")
+
+# Use match-case to determine the response based on priority
+match priority:
     case "high":
-        if Time_bound == "yes":
-            print("Reminder:", Task,
-                  " is a high priority task that requires immediate attention today!")
-        else:
-            print("Reminder:", Task,
-                  " is a high priority task but can be done later within the today!")
+        reminder = f"'{task}' is a high priority task"
     case "medium":
-        if Time_bound == "yes":
-            print("Reminder:", Task,
-                  " is a medium priority task that requires immediate attention today!")
-        else:
-            print("Reminder:", Task,
-                  " is a medium priority task but can be done later within the today!")
+        reminder = f"'{task}' is a medium priority task"
     case "low":
-        if Time_bound == "yes":
-            print("Reminder:", Task,
-                  " is a low priority task but requires immediate attention today!")
-        else:
-            print("Reminder:", Task,
-                  " is a low priority task. Consider completing it when you have free time")
-    case _:
-        print("No task description")
+        reminder = f"'{task}' is a low priority task"
+
+# Modify the reminder based on time sensitivity
+if time_bound == "yes":
+    reminder += " that requires immediate attention today!"
+else:
+    reminder += ". Consider completing it when you have free time."
+
+# Display the final reminder
+print("\nReminder:", reminder)
